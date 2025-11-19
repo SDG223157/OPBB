@@ -8,6 +8,7 @@ Inspired by: https://github.com/OpenBB-finance/openbb-platform-pro-backend
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
 import uvicorn
@@ -26,6 +27,15 @@ app = FastAPI(
     title="OpenBB ROIC Backend",
     description="Professional backend for ROIC quality metrics integrated with OpenBB Platform",
     version="1.0.0"
+)
+
+# Add CORS middleware to allow OpenBB frontend connections
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 class AnalysisRequest(BaseModel):
@@ -88,6 +98,25 @@ async def root():
 async def get_widgets():
     """Return widgets configuration for Terminal Pro style interface"""
     return JSONResponse(content=WIDGETS_CONFIG)
+
+@app.get("/apps.json")
+async def get_apps():
+    """Return apps configuration for OpenBB integration"""
+    import json
+    import os
+    
+    apps_file = os.path.join(os.path.dirname(__file__), "apps.json")
+    if os.path.exists(apps_file):
+        with open(apps_file, 'r') as f:
+            return JSONResponse(content=json.load(f))
+    else:
+        return JSONResponse(content={
+            "apps": [{
+                "id": "roic-metrics",
+                "name": "ROIC Quality Metrics",
+                "widgets": list(WIDGETS_CONFIG.keys())
+            }]
+        })
 
 @app.get("/api/v1/roic/metrics/{symbol}")
 async def get_roic_metrics(symbol: str):
