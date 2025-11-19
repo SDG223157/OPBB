@@ -6,10 +6,12 @@ Advanced financial analysis platform combining OpenBB's market data capabilities
 
 - **OpenBB CLI Integration**: Full OpenBB platform for market data, news, and analysis
 - **ROIC Quality Metrics**: Custom CLI tool for fundamental quality analysis
+- **🆕 Unified Analysis**: Master tool combining OpenBB + ROIC data seamlessly
 - **Multi-Provider Support**: Yahoo Finance, Polygon, Finviz Elite, FRED, and ROIC.ai
 - **Historical Analysis**: 10-year ROIC trends for any stock (including Chinese A-shares)
 - **Smart Forecasting**: Quality-based 3-year price projections
 - **Professional Display**: Both terminal and OpenBB-style table formats
+- **🆕 Integration Wrappers**: Python scripts that merge OpenBB and ROIC metrics
 
 ## 🎯 Quick Start
 
@@ -33,6 +35,16 @@ pip install openbb-cli
 ./launch-openbb-premium.sh
 ```
 
+### 🆕 Master Analysis Tool
+
+```bash
+# Complete analysis combining OpenBB + ROIC
+./analyze AAPL              # Full analysis
+./analyze MSFT roic         # ROIC metrics only
+./analyze NVDA forecast     # Price targets
+./analyze compare AAPL GOOGL MSFT  # Compare multiple
+```
+
 ### Using ROIC Tools
 
 ```bash
@@ -47,6 +59,17 @@ pip install openbb-cli
 
 # Historical analysis
 ./roic historical 600519.SS --years 10
+```
+
+### Integration Features
+
+```bash
+# Combined OpenBB + ROIC data
+python roic_wrapper.py AAPL
+
+# Hybrid launcher
+python hybrid_launcher.py roic AAPL  # ROIC data
+python hybrid_launcher.py            # Launch OpenBB
 ```
 
 ## 📈 Available Commands

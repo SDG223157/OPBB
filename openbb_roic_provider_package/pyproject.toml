@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openbb-roic"
+version = "1.0.0"
+description = "ROIC provider for OpenBB Platform - Quality investing metrics and analysis"
+readme = "README.md"
+authors = [
+    { name = "OpenBB Community", email = "hello@openbb.co" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "openbb-core>=1.0.0",
+    "pandas>=1.5.0",
+    "pydantic>=2.0.0",
+    "requests>=2.28.0",
+    "numpy>=1.20.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/SDG223157/OPBB"
+"Bug Tracker" = "https://github.com/SDG223157/OPBB/issues"
+
+[project.entry-points."openbb_provider_extension"]
+roic = "openbb_roic:roic_provider"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["openbb_roic*"]
+
+[tool.setuptools.package-data]
+openbb_roic = ["*.json", "*.yaml"]

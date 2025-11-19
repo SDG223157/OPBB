@@ -1,0 +1,79 @@
+#!/bin/bash
+# Master Analysis Tool - Combines OpenBB and ROIC
+
+# Colors for output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Check arguments
+if [ $# -eq 0 ]; then
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${GREEN}   📊 Master Analysis Tool${NC}"
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo ""
+    echo "Usage:"
+    echo "  ./analyze SYMBOL           - Full analysis (OpenBB + ROIC)"
+    echo "  ./analyze SYMBOL roic      - ROIC quality metrics only"
+    echo "  ./analyze SYMBOL forecast  - ROIC forecast only"
+    echo "  ./analyze SYMBOL openbb    - Launch OpenBB for symbol"
+    echo "  ./analyze compare SYM1 SYM2 ... - Compare multiple stocks"
+    echo ""
+    echo "Examples:"
+    echo "  ./analyze AAPL            # Full Apple analysis"
+    echo "  ./analyze MSFT roic       # Microsoft ROIC only"
+    echo "  ./analyze NVDA forecast   # Nvidia forecast"
+    echo "  ./analyze compare AAPL GOOGL MSFT"
+    echo ""
+    exit 0
+fi
+
+# Navigate to OPBB directory
+cd /Users/sdg223157/OPBB
+
+# Activate virtual environment
+source openbb-env/bin/activate
+
+SYMBOL=$1
+COMMAND=${2:-full}
+
+case $COMMAND in
+    roic)
+        echo -e "${BLUE}Getting ROIC metrics for ${SYMBOL}...${NC}"
+        ./roic quality $SYMBOL
+        ;;
+    
+    forecast)
+        echo -e "${BLUE}Getting forecast for ${SYMBOL}...${NC}"
+        ./roic forecast $SYMBOL
+        ;;
+    
+    openbb)
+        echo -e "${BLUE}Launching OpenBB for ${SYMBOL}...${NC}"
+        echo "Run: /equity/price/quote --symbol $SYMBOL --provider yfinance"
+        ./launch-openbb-premium.sh
+        ;;
+    
+    compare)
+        shift  # Remove 'compare' from arguments
+        echo -e "${BLUE}Comparing stocks: $@${NC}"
+        ./roic compare $@
+        ;;
+    
+    full|*)
+        echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+        echo -e "${GREEN}   COMPREHENSIVE ANALYSIS: ${SYMBOL}${NC}"
+        echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+        
+        # Run integration wrapper for combined data
+        python roic_wrapper.py $SYMBOL
+        
+        # Run ROIC forecast
+        echo -e "\n${BLUE}Quality-Based Forecast:${NC}"
+        ./roic forecast $SYMBOL 2>/dev/null | tail -n 10
+        
+        echo -e "\n${GREEN}✅ Analysis complete!${NC}"
+        echo -e "${YELLOW}For more details, run: ./launch-openbb-premium.sh${NC}"
+        ;;
+esac
