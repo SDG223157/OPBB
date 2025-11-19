@@ -40,7 +40,7 @@
 ### 1. Equity Market Data (`/equity/`)
 ```bash
 # Price data
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 /equity/price/quote --symbol AAPL
 /equity/price/performance --symbol AAPL MSFT GOOGL
 
@@ -79,7 +79,7 @@
 ```bash
 # Crypto prices
 /crypto/price/quote --symbol BTC --provider polygon
-/crypto/price/historical --symbol ETH --start 2024-01-01
+/crypto/price/historical --symbol ETH --start_date 2024-01-01
 
 # Crypto stats
 /crypto/stats --symbol BTC
@@ -90,7 +90,7 @@
 # ETF information
 /etf/info --symbol SPY
 /etf/holdings --symbol QQQ
-/etf/price/historical --symbol SPY --start 2024-01-01
+/etf/price/historical --symbol SPY --start_date 2024-01-01
 ```
 
 ### 5. News (`/news/`)
@@ -105,7 +105,7 @@
 ```bash
 # Exchange rates
 /currency/price/quote --symbol EURUSD
-/currency/price/historical --symbol GBPUSD --start 2024-01-01
+/currency/price/historical --symbol GBPUSD --start_date 2024-01-01
 ```
 
 ### 7. Fixed Income (`/fixedincome/`)
@@ -158,7 +158,7 @@
 /equity/price/quote --symbol AAPL
 
 # 2. View historical performance
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 
 # 3. Check fundamentals
 /equity/fundamental/income --symbol AAPL
@@ -360,7 +360,7 @@
 /equity/price/quote --symbol AAPL
 
 # Historical data
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 
 # Fundamentals
 /equity/fundamental/metrics --symbol AAPL

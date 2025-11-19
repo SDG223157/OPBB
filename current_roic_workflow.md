@@ -54,7 +54,7 @@ ROIC Metrics:
 /equity/fundamental/income --symbol AAPL --provider polygon
 /equity/fundamental/balance --symbol AAPL --provider yfinance
 /equity/fundamental/metrics --symbol AAPL --provider finviz
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 exit
 ```
 

@@ -11,7 +11,7 @@
 # Output: Current price, day change, volume
 
 # Step 2: Recent performance
-/equity/price/historical --symbol AAPL --start 2024-10-01 --end 2024-11-19
+/equity/price/historical --symbol AAPL --start_date 2024-10-01 --end_date 2024-11-19
 # Output: Daily prices for last ~6 weeks
 
 # Step 3: Financial health
@@ -84,7 +84,7 @@
 # Look for: dividend_yield, payout_ratio
 
 # Historical stability
-/equity/price/historical --symbol JNJ --start 2020-01-01 --interval 1M
+/equity/price/historical --symbol JNJ --start_date 2020-01-01 --interval 1M
 # Output: Monthly prices showing stability
 
 # Income generation
@@ -140,7 +140,7 @@
 
 ```bash
 # Volatility check
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 # Calculate standard deviation manually or observe price swings
 
 # Market correlation
@@ -201,7 +201,7 @@
 /equity/profile --symbol NEWSTOCK
 
 # First day trading
-/equity/price/historical --symbol NEWSTOCK --start [IPO_DATE]
+/equity/price/historical --symbol NEWSTOCK --start_date [IPO_DATE]
 
 # Comparison with sector
 /equity/compare/peers --symbol NEWSTOCK

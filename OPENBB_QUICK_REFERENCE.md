@@ -13,7 +13,7 @@
 /equity/price/quote --symbol AAPL
 
 # Historical prices
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 
 # Key metrics
 /equity/fundamental/metrics --symbol AAPL --provider yfinance

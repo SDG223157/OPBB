@@ -113,7 +113,7 @@ If ROIC provider doesn't appear:
 ```bash
 # In OpenBB CLI:
 /equity/fundamental/metrics --symbol AAPL --provider roic
-/equity/price/historical --symbol AAPL --start 2024-01-01
+/equity/price/historical --symbol AAPL --start_date 2024-01-01
 /equity/fundamental/income --symbol AAPL --provider polygon
 /equity/estimates/consensus --symbol AAPL --provider roic
 /equity/fundamental/metrics --symbol AAPL --provider roic --export csv
