@@ -1,0 +1,11 @@
+#!/bin/bash
+# ROIC CLI - Wrapper that activates virtual environment
+
+# Navigate to the OPBB directory
+cd /Users/sdg223157/OPBB
+
+# Activate the virtual environment
+source /Users/sdg223157/OPBB/openbb-env/bin/activate
+
+# Run the Python ROIC command with all arguments
+python3 roic_cli_wrapper.py "$@"
