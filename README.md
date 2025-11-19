@@ -37,6 +37,18 @@ pip install openbb-cli
 ./launch-openbb-premium.sh
 ```
 
+### 🆕 OpenBB Workspace Backends Integration
+
+Configure in OpenBB Workspace's Backends screen:
+```yaml
+Backend Name: ROIC Quality API
+Environment: openbb
+Executable: python openbb_roic_backend.py
+Working Directory: /Users/sdg223157/OPBB
+```
+
+See [OPENBB_BACKENDS_CONFIGURATION.md](OPENBB_BACKENDS_CONFIGURATION.md) for complete setup.
+
 ### 🆕 Master Analysis Tool
 
 ```bash
